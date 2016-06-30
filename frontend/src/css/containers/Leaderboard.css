@@ -1,5 +1,9 @@
-.Leaderboard-header {
+.Leaderboard {
+  margin: 4rem 1rem 1rem 1rem;
+}
 
+.Leaderboard-header h3 {
+  color: var(--dark-gray);
 }
 
 .Leaderboard-table {

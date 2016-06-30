@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import PublicTopBar from '../containers/PublicTopBar';
+import PublicTopBarV2 from '../containers/PublicTopBarV2';
 import PublicFooter from '../components/PublicFooter';
 
 import Currency from '../components/Currency';
@@ -10,13 +10,10 @@ export class Leaderboard extends Component {
   render() {
     return (
       <div className='Leaderboard'>
-
-        <PublicTopBar />
-
-        <div className='PublicContent'>
+        <PublicTopBarV2 loginRedirectTo={`/leaderboard`} className='pt2 absolute top-0 left-0 right-0' fill='#6388bf' />
 
           <div className='Leaderboard-header'>
-            <h2> Open Collective Leaderboard </h2>
+            <h3> Top collectives in last 30 days </h3>
           </div>
 
           <div className='Leaderboard-data'>
@@ -58,7 +55,6 @@ export class Leaderboard extends Component {
             </ol>
 
           </div>
-        </div>
         <PublicFooter />
       </div>
     );

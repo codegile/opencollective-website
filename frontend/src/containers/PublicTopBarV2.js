@@ -38,7 +38,7 @@ class PublicTopBarV2 extends Component {
   }
 
   render() {
-    const { className = '' } = this.props;
+    const { className = '', fill = '#fff'} = this.props;
 
     return (
       <div className={`clearfix ${className}`}>
@@ -47,7 +47,7 @@ class PublicTopBarV2 extends Component {
             <use xlinkHref='#svg-isotype'/>
           </svg>
           <svg width='172' height='25' className='align-middle xs-hide'>
-            <use xlinkHref='#svg-logotype' fill='#fff'/>
+            <use xlinkHref='#svg-logotype' fill={fill}/>
           </svg>
         </div>
         <div className='right'>
