@@ -1,30 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { pushState } from 'redux-router';
+
 import logout from '../actions/session/logout';
+import decodeJWT from '../actions/session/decode_jwt';
 
 class PublicTopBarV2 extends Component {
   showSession() {
     const {
       session,
-      logout,
-      loginRedirectTo = '/'
+      router,
+      pushState
     } = this.props;
 
-    const redirect = loginRedirectTo;
+    const redirect = router.location.pathname;
 
     if (session && session.isAuthenticated) {
       return (
         <div className='inline-block ml1'>
           <span className="h6">
-            <span>Logged in as </span>
-            <span className='-fw-bold'>{session.user.username || session.user.email.substr(0, session.user.email.indexOf('@'))}</span>
+            <span className='-fw-bold -ttu'></span>
           </span>
-          <button onClick={logout} className='border-none -btn -btn-medium -ttu -ff-sec -fw-bold'>logout</button>
+          <span className="h6">
+            <button onClick={() => window.location('https://app.opencollective.com/')} className='border-none -btn -btn-medium -fw-bold'>OpenCollective App</button>
+          </span>
+          <span className="h6">
+            <button onClick={() => pushState(null, '/subscriptions')} className='border-none -btn -btn-medium -fw-bold'>My Subscriptions</button>
+          </span>
+
+
+          <button onClick={logoutAndUpdate.bind(this)} className='border-none -btn -btn-medium -ff-sec -fw-bold' title={session.user.username || session.user.email}>Logout</button>
         </div>
       );
     }
 
-    return (<a className='ml1 -btn -btn-medium -ttu -ff-sec -fw-bold' href={`https://app.opencollective.com/login?next=${redirect}`}>Log in</a>);
+    return (<a className='ml1 -btn -btn-medium -ttu -ff-sec -fw-bold' href={`/login?next=${redirect}`}>Login</a>);
   }
 
   render() {
@@ -49,10 +59,19 @@ class PublicTopBarV2 extends Component {
   }
 }
 
+export function logoutAndUpdate() {
+  this.props.logout();
+  this.props.decodeJWT();
+}
+
 export default connect(mapStateToProps, {
-  logout
+  logout,
+  pushState,
+  decodeJWT
 })(PublicTopBarV2);
 
-export function mapStateToProps({ session }) {
-  return { session };
+export function mapStateToProps({ session, router }) {
+  return {
+    session,
+    router };
 }

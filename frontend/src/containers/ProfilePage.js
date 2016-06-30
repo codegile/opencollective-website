@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import i18n from '../lib/i18n';
 
-import OnBoardingHeader from '../components/on_boarding/OnBoardingHeader';
+import PublicTopBarV2 from '../containers/PublicTopBarV2';
 import UserPhoto from '../components/UserPhoto';
 import PublicFooter from '../components/PublicFooter';
 import ProfileCard from '../components/ProfileCard';
@@ -31,7 +31,7 @@ export class ProfilePage extends Component {
 
   	return (
   		<div className='ProfilePage'>
-        <OnBoardingHeader />
+        <PublicTopBarV2 loginRedirectTo={`/${profile.username}`} className='pt3' />
         <UserPhoto user={user} addBadge={true} className={`mx-auto ${profile.isOrganization ? 'organization' : ''}`} />
         <div className="line1">Hello I'm</div>
         <div className="line2">{name}</div>
@@ -47,14 +47,14 @@ export class ProfilePage extends Component {
             <section style={{paddingBottom: '0'}}>
               <div className="lineA">{i18n.getString('proudSupporter')}</div>
               {backing.map((collective, index) => <ProfileCard key={index} image={collective.logo} title={collective.name} subtitle={`${collective.members} Members`} footer={`${i18n.getString('backer')} ${i18n.getString('since')} ${i18n.moment(collective.createdAt).format('MMMM YYYY')}`} />)}
-            </section> 
+            </section>
           ) : null
         }
         <div style={{textAlign: 'center', margin: `${isEmpty ? 0 : 48}px auto 78px auto`, opacity: '.4'}} >
           {isEmpty ? (
             <div className="mb1">
               <img src="/static/images/spooky-ghost.svg" />
-              <div style={{fontStyle: 'italic', fontFamily: 'Lato', fontSize: '22px', color: '#c0c0c0', textAlign: 'center'}}>This Profile page is so empty you might find a ghost</div>              
+              <div style={{fontStyle: 'italic', fontFamily: 'Lato', fontSize: '22px', color: '#c0c0c0', textAlign: 'center'}}>This Profile page is so empty you might find a ghost</div>
             </div>
             ) : null
           }

@@ -28,6 +28,7 @@
  */
 
 @import './containers/Leaderboard.css';
+@import './containers/Login.css';
 @import './containers/PublicGroup.css';
 @import './containers/DonatePage.css';
 @import './containers/SubmitExpense.css';

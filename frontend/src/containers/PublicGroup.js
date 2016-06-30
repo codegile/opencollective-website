@@ -34,6 +34,7 @@ import getSocialMediaAvatars from '../actions/users/get_social_media_avatars';
 import validateSchema from '../actions/form/validate_schema';
 import decodeJWT from '../actions/session/decode_jwt';
 import uploadImage from '../actions/images/upload';
+import logout from '../actions/session/logout';
 
 import profileSchema from '../joi_schemas/profile';
 
@@ -110,7 +111,7 @@ export class PublicGroup extends Component {
         avatar: `https://avatars.githubusercontent.com/${username}?s=64`,
         stats: {
           c: commits,
-          a: null, 
+          a: null,
           d: null
         }
       }
@@ -128,7 +129,7 @@ export class PublicGroup extends Component {
 
         <PublicGroupHero group={group} {...this.props} />
         <PublicGroupWhoWeAre group={group} {...this.props} />
-        {group.slug === 'opensource' && 
+        {group.slug === 'opensource' &&
           <div className="PublicGroupOpenSourceCTA">
             <div className="arrow-down"></div>
             <div className="line1">Apply to create an open collective for your open source project.</div>
@@ -172,12 +173,15 @@ export class PublicGroup extends Component {
       group,
       fetchTransactions,
       fetchUsers,
-      fetchGroup
+      fetchGroup,
+      slug
     } = this.props;
 
-    if (group.mission) {
-      fetchGroup(group.id);
+    if (!group) {
+      fetchGroup(slug)
+    }
 
+    if (group.mission) {
       fetchTransactions(group.id, {
         per_page: NUM_TRANSACTIONS_TO_SHOW,
         sort: 'createdAt',
@@ -308,7 +312,8 @@ export default connect(mapStateToProps, {
   getSocialMediaAvatars,
   validateSchema,
   decodeJWT,
-  appendDonationForm
+  appendDonationForm,
+  logout
 })(PublicGroup);
 
 function mapStateToProps({
@@ -382,6 +387,7 @@ function mapStateToProps({
     paypalIsDone: query.status === 'payment_success' && !!newUserId,
     newUser,
     hasFullAccount: newUser.hasFullAccount || false,
-    i18n: i18n(group.settings.lang || 'en')
+    i18n: i18n(group.settings.lang || 'en'),
+    slug: router.location.pathname.substr(1)
   };
 }

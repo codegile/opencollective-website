@@ -93,6 +93,23 @@ export function del(endpoint) {
 }
 
 /**
+ * Auth request without tokens
+ */
+
+export function auth(body) {
+
+  return fetch(url('/authenticate'), {
+    method: 'post',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+  .then(checkStatus);
+}
+
+/**
  * Build url to the api
  */
 
