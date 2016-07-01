@@ -22,14 +22,14 @@ class PublicTopBarV2 extends Component {
             <span className='-fw-bold -ttu'></span>
           </span>
           <span className="h6">
-            <button onClick={() => window.location('https://app.opencollective.com/')} className='border-none -btn -btn-medium -fw-bold'>OpenCollective App</button>
+            <button onClick={() => window.location = 'https://app.opencollective.com/'} className='border-none -btn -ttu -btn-medium -fw-bold'>OpenCollective App</button>
           </span>
           <span className="h6">
-            <button onClick={() => pushState(null, '/subscriptions')} className='border-none -btn -btn-medium -fw-bold'>My Subscriptions</button>
+            <button onClick={() => pushState(null, '/subscriptions')} className='border-none -ttu -btn -btn-medium -fw-bold'>My Subscriptions</button>
           </span>
 
 
-          <button onClick={logoutAndUpdate.bind(this)} className='border-none -btn -btn-medium -ff-sec -fw-bold' title={session.user.username || session.user.email}>Logout</button>
+          <button onClick={logoutAndUpdate.bind(this)} className='border-none -btn -btn-medium -ttu -ff-sec -fw-bold' title={session.user.username || session.user.email}>Logout</button>
         </div>
       );
     }
@@ -38,16 +38,21 @@ class PublicTopBarV2 extends Component {
   }
 
   render() {
-    const { className = '', fill = '#fff'} = this.props;
+    const { className = '', logoFill = '#fff', showBackgroundImage = false} = this.props;
+    let backgroundImage = ''
+    if (showBackgroundImage) {
+      //backgroundImage = '/static/images/collectives/default-header-bg.jpg';
+      backgroundImage = '/static/images/gradient01.png';
+    }
 
     return (
-      <div className={`clearfix ${className}`}>
+      <div className={`PublicTopBar clearfix bg-cover ${className}`} style={{backgroundImage: `url(${backgroundImage})`}}>
         <div className='left'>
           <svg width='17' height='18' className='-light-blue align-middle mr1'>
             <use xlinkHref='#svg-isotype'/>
           </svg>
           <svg width='172' height='25' className='align-middle xs-hide'>
-            <use xlinkHref='#svg-logotype' fill={fill}/>
+            <use xlinkHref='#svg-logotype' fill={logoFill}/>
           </svg>
         </div>
         <div className='right'>

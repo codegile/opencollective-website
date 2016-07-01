@@ -9,11 +9,12 @@ import Leaderboard from './containers/Leaderboard';
 import OnBoarding from './containers/OnBoarding';
 import Login from './containers/Login';
 
+import { requireAuthentication } from './components/AuthenticatedComponent';
+
 export default (
   <Route path="/">
     <Route path="/login" component={Login} />,
-    <Route path="/subscriptions/:token" component={Subscriptions} />
-    <Route path="/subscriptions" component={Subscriptions} />
+    <Route path="/subscriptions" component={requireAuthentication(Subscriptions)} />
     <Route path="/leaderboard" component={Leaderboard} />
     <Route path="/opensource/apply/:token" component={OnBoarding} />
     <Route path="/opensource/apply" component={OnBoarding} />

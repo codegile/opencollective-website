@@ -8,7 +8,7 @@ import Currency from '../components/Currency';
 import DisplayUrl from '../components/DisplayUrl';
 import Icon from '../components/Icon';
 import PublicFooter from '../components/PublicFooter';
-import PublicTopBar from '../containers/PublicTopBar';
+import PublicTopBarV2 from '../containers/PublicTopBarV2';
 import SubmitExpense from '../containers/SubmitExpense';
 
 import TransactionItem from '../components/TransactionItem';
@@ -42,7 +42,7 @@ export class Transactions extends Component {
     return (
      <div className='Transactions'>
 
-        <PublicTopBar />
+        <PublicTopBarV2 className='pt2 pb2 absolute top-0 left-0 right-0' logoFill='#6388bf' showBackgroundImage={true} />
 
         <div className='PublicContent'>
           <div className='Widget-header'>

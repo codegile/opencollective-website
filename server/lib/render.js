@@ -39,9 +39,6 @@ export default (req, res, next) => {
       store.dispatch(hydrate({
         group: req.group,
         profile: req.profile,
-        subscriptions: req.subscriptions,
-        jwtExpired: req.jwtExpired,
-        jwtInvalid: req.jwtInvalid,
         leaderboard: req.leaderboard,
         connectedAccount: req.connectedAccount
       }));

@@ -124,7 +124,7 @@ export class PublicGroup extends Component {
       }
 
       { group.mission &&
-      <div className={publicGroupClassName}>
+      <div id='content' className={publicGroupClassName}>
         <Notification />
 
         <PublicGroupHero group={group} {...this.props} />

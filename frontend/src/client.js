@@ -4,19 +4,22 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { ReduxRouter, reduxReactRouter } from 'redux-router';
 import { Provider } from 'react-redux';
 import createHistory from 'history/lib/createBrowserHistory';
+import decodeJWT from './actions/session/decode_jwt';
 
 import routes from './routes';
 import reducers from './reducers';
 import reduxMiddleware from './redux_middleware';
 
 const store = compose(
-  reduxReactRouter({ createHistory }),
+  reduxReactRouter({ createHistory, routes }),
   applyMiddleware(...reduxMiddleware)
 )(createStore)(reducers, window.__INITIAL_STATE__);
 
+store.dispatch(decodeJWT());
+
 const rootComponent = (
   <Provider store={store}>
-    <ReduxRouter routes={routes} />
+    <ReduxRouter />
   </Provider>
 );
 
