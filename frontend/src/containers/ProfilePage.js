@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import i18n from '../lib/i18n';
 
-import PublicTopBarV2 from '../containers/PublicTopBarV2';
+import PublicTopBar from '../containers/PublicTopBar';
 import UserPhoto from '../components/UserPhoto';
 import PublicFooter from '../components/PublicFooter';
 import ProfileCard from '../components/ProfileCard';
@@ -31,7 +31,7 @@ export class ProfilePage extends Component {
 
   	return (
   		<div className='ProfilePage'>
-        <PublicTopBarV2 loginRedirectTo={`/${profile.username}`} className='pt3' />
+        <PublicTopBar loginRedirectTo={`/${profile.username}`} className='pt3' />
         <UserPhoto user={user} addBadge={true} className={`mx-auto ${profile.isOrganization ? 'organization' : ''}`} />
         <div className="line1">Hello I'm</div>
         <div className="line2">{name}</div>

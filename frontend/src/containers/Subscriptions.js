@@ -3,7 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
 
-import PublicTopBarV2 from '../containers/PublicTopBarV2';
+import PublicTopBar from '../containers/PublicTopBar';
 import PublicFooter from '../components/PublicFooter';
 import Currency from '../components/Currency';
 import TransactionItem from '../components/TransactionItem';
@@ -28,7 +28,7 @@ export class Subscriptions extends Component {
     return (
       <div className='Subscription'>
         <div className='container center'>
-        <PublicTopBarV2 className='pt2 pb2 absolute top-0 left-0 right-0' logoFill='#6388bf' showBackgroundImage={true} />
+        <PublicTopBar className='pt2 pb2 absolute top-0 left-0 right-0' logoFill='#6388bf' showBackgroundImage={true} />
 
         <Notification />
         <div className='PublicContent'>

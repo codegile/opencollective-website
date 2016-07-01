@@ -5,7 +5,7 @@ import { pushState } from 'redux-router';
 import logout from '../actions/session/logout';
 import decodeJWT from '../actions/session/decode_jwt';
 
-class PublicTopBarV2 extends Component {
+class PublicTopBar extends Component {
   showSession() {
     const {
       session,
@@ -73,7 +73,7 @@ export default connect(mapStateToProps, {
   logout,
   pushState,
   decodeJWT
-})(PublicTopBarV2);
+})(PublicTopBar);
 
 export function mapStateToProps({ session, router }) {
   return {
