@@ -4,7 +4,7 @@ import Joi from 'joi';
 import Input from '../components/Input';
 import AsyncButton from '../components/AsyncButton';
 
-class SubscriptionEmailForm extends Component {
+class LoginEmailForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,12 +21,12 @@ class SubscriptionEmailForm extends Component {
       inProgress
     } = this.props;
     return (
-      <div className='Subscription-Email'>
-        <div className='Subscription-Email-description'>
-          We will send you an email with a link to access your subscriptions.
+      <div className='Login-Email'>
+        <div className='Login-Email-description'>
+          We will send you an email with a link to log you into Open Collective.
         </div>
         <form
-          className='Subscription-Email-form'
+          className='Login-Email-form'
           onSubmit={this.handleSubmit.bind(this)}>
           <Input
             type='email'
@@ -63,4 +63,4 @@ class SubscriptionEmailForm extends Component {
   }
 }
 
-export default SubscriptionEmailForm;
+export default LoginEmailForm;
